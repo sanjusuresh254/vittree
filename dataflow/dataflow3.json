@@ -10,11 +10,47 @@
 						"type": "DatasetReference"
 					},
 					"name": "SourceProducts"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_products_subcategory_target",
+						"type": "DatasetReference"
+					},
+					"name": "SourceProductsSubcategory"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_products_category_target",
+						"type": "DatasetReference"
+					},
+					"name": "sourceProductsCategory"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_products_table",
+						"type": "DatasetReference"
+					},
+					"name": "SinkProducts"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_product_category_table",
+						"type": "DatasetReference"
+					},
+					"name": "SinkProductsCategory"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_products_subcategory_table",
+						"type": "DatasetReference"
+					},
+					"name": "SinkProductsSubcategory"
+				}
+			],
 			"transformations": [],
-			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SourceProducts"
+			"script": "source(output(\n\t\tProductKey as integer,\n\t\tProductLabel as integer,\n\t\tProductName as string,\n\t\tProductDescription as string,\n\t\tProductSubcategoryKey as string,\n\t\tManufacturer as string,\n\t\tBrandName as string,\n\t\tClassID as integer,\n\t\tClassName as string,\n\t\tStyleID as integer,\n\t\tStyleName as string,\n\t\tColorID as integer,\n\t\tColorName as string,\n\t\tSize as string,\n\t\tSizeRange as string,\n\t\tSizeUnitMeasureID as string,\n\t\tWeight as float,\n\t\tWeightUnitMeasureID as integer,\n\t\tUnitOfMeasureID as string,\n\t\tUnitOfMeasureName as string,\n\t\tStockTypeID as integer,\n\t\tStockTypeName as string,\n\t\tUnitCost as double,\n\t\tUnitPrice as double,\n\t\tAvailableForSaleDate as date,\n\t\tStopSaleDate as date,\n\t\tStatus as string,\n\t\tImageURL as string,\n\t\tProductURL as string,\n\t\tETLLoadID as integer,\n\t\tLoadDate as date,\n\t\tUpdateDate as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SourceProducts\nsource(output(\n\t\tProductSubcategoryKey as integer,\n\t\tProductSubcategoryLabel as integer,\n\t\tProductSubcategoryName as string,\n\t\tProductSubcategoryDescription as string,\n\t\tProductCategoryKey as integer,\n\t\tETLLoadID as integer,\n\t\tLoadDate as date,\n\t\tUpdateDate as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SourceProductsSubcategory\nsource(output(\n\t\tProductCategoryKey as integer,\n\t\tProductCategoryLabel as integer,\n\t\tProductCategoryName as string,\n\t\tProductCategoryDescription as string,\n\t\tETLLoadID as integer,\n\t\tLoadDate as date,\n\t\tUpdateDate as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sourceProductsCategory\nSourceProducts sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tProductKey as integer,\n\t\tProductLabel as integer,\n\t\tProductName as string,\n\t\tProductDescription as string,\n\t\tProductSubcategoryKey as integer,\n\t\tManufacturer as string,\n\t\tBrandName as string,\n\t\tClassID as integer,\n\t\tClassName as string,\n\t\tStyleID as integer,\n\t\tStyleName as string,\n\t\tColorID as integer,\n\t\tColorName as string,\n\t\tSize as string,\n\t\tSizeRange as string,\n\t\tSizeUnitMeasureID as string,\n\t\tWeight as decimal(10,2),\n\t\tWeightUnitMeasureID as integer,\n\t\tUnitOfMeasureID as string,\n\t\tUnitOfMeasureName as string,\n\t\tStockTypeID as integer,\n\t\tStockTypeName as string,\n\t\tUnitCost as decimal(23,2),\n\t\tUnitPrice as decimal(23,2),\n\t\tAvailableForSaleDate as date,\n\t\tStopSaleDate as date,\n\t\tStatus as string,\n\t\tImageURL as string,\n\t\tProductURL as string,\n\t\tETLLoadID as integer,\n\t\tLoadDate as date,\n\t\tUpdateDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tProductKey,\n\t\tProductLabel,\n\t\tProductName,\n\t\tProductDescription,\n\t\tProductSubcategoryKey,\n\t\tManufacturer,\n\t\tBrandName,\n\t\tClassID,\n\t\tClassName,\n\t\tStyleID,\n\t\tStyleName,\n\t\tColorID,\n\t\tColorName,\n\t\tSize,\n\t\tSizeRange,\n\t\tSizeUnitMeasureID,\n\t\tWeight,\n\t\tWeightUnitMeasureID,\n\t\tUnitOfMeasureID,\n\t\tUnitOfMeasureName,\n\t\tStockTypeID,\n\t\tStockTypeName,\n\t\tUnitCost,\n\t\tUnitPrice,\n\t\tAvailableForSaleDate,\n\t\tStopSaleDate,\n\t\tStatus,\n\t\tImageURL,\n\t\tProductURL,\n\t\tETLLoadID,\n\t\tLoadDate,\n\t\tUpdateDate\n\t)) ~> SinkProducts\nsourceProductsCategory sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tProductCategoryKey as integer,\n\t\tProductCategoryLabel as integer,\n\t\tProductCategoryName as string,\n\t\tProductCategoryDescription as string,\n\t\tETLLoadID as integer,\n\t\tLoadDate as date,\n\t\tUpdateDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tProductCategoryKey,\n\t\tProductCategoryLabel,\n\t\tProductCategoryName,\n\t\tProductCategoryDescription,\n\t\tETLLoadID,\n\t\tLoadDate,\n\t\tUpdateDate\n\t)) ~> SinkProductsCategory\nSourceProductsSubcategory sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tProductSubcategoryKey as integer,\n\t\tProductSubcategoryLabel as integer,\n\t\tProductSubcategoryName as string,\n\t\tProductSubcategoryDescription as string,\n\t\tProductCategoryKey as integer,\n\t\tETLLoadID as integer,\n\t\tLoadDate as date,\n\t\tUpdateDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tProductSubcategoryKey,\n\t\tProductSubcategoryLabel,\n\t\tProductSubcategoryName,\n\t\tProductSubcategoryDescription,\n\t\tProductCategoryKey,\n\t\tETLLoadID,\n\t\tLoadDate,\n\t\tUpdateDate\n\t)) ~> SinkProductsSubcategory"
 		}
 	}
 }

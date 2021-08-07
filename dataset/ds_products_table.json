@@ -1,0 +1,160 @@
+{
+	"name": "ds_products_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreeSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductLabel",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductName",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductSubcategoryKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Manufacturer",
+				"type": "varchar"
+			},
+			{
+				"name": "BrandName",
+				"type": "varchar"
+			},
+			{
+				"name": "ClassID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ClassName",
+				"type": "varchar"
+			},
+			{
+				"name": "StyleID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StyleName",
+				"type": "varchar"
+			},
+			{
+				"name": "ColorID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ColorName",
+				"type": "varchar"
+			},
+			{
+				"name": "Size",
+				"type": "varchar"
+			},
+			{
+				"name": "SizeRange",
+				"type": "varchar"
+			},
+			{
+				"name": "SizeUnitMeasureID",
+				"type": "varchar"
+			},
+			{
+				"name": "Weight",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "WeightUnitMeasureID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UnitOfMeasureID",
+				"type": "varchar"
+			},
+			{
+				"name": "UnitOfMeasureName",
+				"type": "varchar"
+			},
+			{
+				"name": "StockTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockTypeName",
+				"type": "varchar"
+			},
+			{
+				"name": "UnitCost",
+				"type": "decimal",
+				"precision": 23,
+				"scale": 2
+			},
+			{
+				"name": "UnitPrice",
+				"type": "decimal",
+				"precision": 23,
+				"scale": 2
+			},
+			{
+				"name": "AvailableForSaleDate",
+				"type": "date"
+			},
+			{
+				"name": "StopSaleDate",
+				"type": "date"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "ImageURL",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductURL",
+				"type": "varchar"
+			},
+			{
+				"name": "ETLLoadID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LoadDate",
+				"type": "date"
+			},
+			{
+				"name": "UpdateDate",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "products"
+		}
+	}
+}

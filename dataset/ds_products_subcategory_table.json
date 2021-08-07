@@ -1,0 +1,53 @@
+{
+	"name": "ds_products_subcategory_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreeSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductSubcategoryKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductSubcategoryLabel",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductSubcategoryName",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductSubcategoryDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "ProductCategoryKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETLLoadID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LoadDate",
+				"type": "date"
+			},
+			{
+				"name": "UpdateDate",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "product_subcategory"
+		}
+	}
+}
