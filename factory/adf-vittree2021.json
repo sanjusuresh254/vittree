@@ -1,0 +1,9 @@
+{
+	"name": "adf-vittree2021",
+	"location": "uaenorth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "82572ec4-b69b-46bf-b00c-416eadf8d1cd",
+		"tenantId": "2f9dcad4-1b11-4b8e-9cf4-4c5a81b256f3"
+	}
+}
