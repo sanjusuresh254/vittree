@@ -1,0 +1,50 @@
+{
+	"name": "ds_products_category",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "ProductCategory",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Product Master.xlsx",
+				"fileSystem": "input"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "ProductCategoryKey",
+				"type": "String"
+			},
+			{
+				"name": "ProductCategoryLabel",
+				"type": "String"
+			},
+			{
+				"name": "ProductCategoryName",
+				"type": "String"
+			},
+			{
+				"name": "ProductCategoryDescription",
+				"type": "String"
+			},
+			{
+				"name": "ETLLoadID",
+				"type": "String"
+			},
+			{
+				"name": "LoadDate",
+				"type": "String"
+			},
+			{
+				"name": "UpdateDate",
+				"type": "String"
+			}
+		]
+	}
+}
