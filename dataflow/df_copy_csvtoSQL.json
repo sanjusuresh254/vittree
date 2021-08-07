@@ -1,5 +1,5 @@
 {
-	"name": "dataflow3",
+	"name": "df_copy_csvtoSQL",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
