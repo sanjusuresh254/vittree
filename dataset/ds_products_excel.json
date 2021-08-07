@@ -1,0 +1,150 @@
+{
+	"name": "ds_products_excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Product",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Product Master.xlsx",
+				"fileSystem": "input"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "ProductKey",
+				"type": "String"
+			},
+			{
+				"name": "ProductLabel",
+				"type": "String"
+			},
+			{
+				"name": "ProductName",
+				"type": "String"
+			},
+			{
+				"name": "ProductDescription",
+				"type": "String"
+			},
+			{
+				"name": "ProductSubcategoryKey",
+				"type": "String"
+			},
+			{
+				"name": "Manufacturer",
+				"type": "String"
+			},
+			{
+				"name": "BrandName",
+				"type": "String"
+			},
+			{
+				"name": "ClassID",
+				"type": "String"
+			},
+			{
+				"name": "ClassName",
+				"type": "String"
+			},
+			{
+				"name": "StyleID",
+				"type": "String"
+			},
+			{
+				"name": "StyleName",
+				"type": "String"
+			},
+			{
+				"name": "ColorID",
+				"type": "String"
+			},
+			{
+				"name": "ColorName",
+				"type": "String"
+			},
+			{
+				"name": "Size",
+				"type": "String"
+			},
+			{
+				"name": "SizeRange",
+				"type": "String"
+			},
+			{
+				"name": "SizeUnitMeasureID",
+				"type": "String"
+			},
+			{
+				"name": "Weight",
+				"type": "String"
+			},
+			{
+				"name": "WeightUnitMeasureID",
+				"type": "String"
+			},
+			{
+				"name": "UnitOfMeasureID",
+				"type": "String"
+			},
+			{
+				"name": "UnitOfMeasureName",
+				"type": "String"
+			},
+			{
+				"name": "StockTypeID",
+				"type": "String"
+			},
+			{
+				"name": "StockTypeName",
+				"type": "String"
+			},
+			{
+				"name": "UnitCost",
+				"type": "String"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "String"
+			},
+			{
+				"name": "AvailableForSaleDate",
+				"type": "String"
+			},
+			{
+				"name": "StopSaleDate",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "ImageURL",
+				"type": "String"
+			},
+			{
+				"name": "ProductURL",
+				"type": "String"
+			},
+			{
+				"name": "ETLLoadID",
+				"type": "String"
+			},
+			{
+				"name": "LoadDate",
+				"type": "String"
+			},
+			{
+				"name": "UpdateDate",
+				"type": "String"
+			}
+		]
+	}
+}
