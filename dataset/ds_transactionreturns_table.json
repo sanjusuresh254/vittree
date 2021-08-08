@@ -1,0 +1,54 @@
+{
+	"name": "ds_transactionreturns_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreeSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "trans_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "cus_id",
+				"type": "varchar"
+			},
+			{
+				"name": "RINoicenum",
+				"type": "varchar"
+			},
+			{
+				"name": "RINoicedate",
+				"type": "date"
+			},
+			{
+				"name": "item_code",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dscription",
+				"type": "varchar"
+			},
+			{
+				"name": "qty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "unit_price",
+				"type": "decimal",
+				"precision": 23,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions_returns"
+		}
+	}
+}
