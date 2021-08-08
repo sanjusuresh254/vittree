@@ -1,0 +1,54 @@
+{
+	"name": "ds_transactionssales_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sales",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Transactions - Sales.xlsx",
+				"fileSystem": "input"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "TransId",
+				"type": "String"
+			},
+			{
+				"name": "cus",
+				"type": "String"
+			},
+			{
+				"name": "invoicenum",
+				"type": "String"
+			},
+			{
+				"name": "invoicedate",
+				"type": "String"
+			},
+			{
+				"name": "ItemCode",
+				"type": "String"
+			},
+			{
+				"name": "Dscription",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "Price for one UNIT",
+				"type": "String"
+			}
+		]
+	}
+}
