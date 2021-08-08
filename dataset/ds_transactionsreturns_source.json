@@ -1,0 +1,54 @@
+{
+	"name": "ds_transactionsreturns_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Transactions - Sales Return.xlsx",
+				"fileSystem": "input"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "TransId",
+				"type": "String"
+			},
+			{
+				"name": "cus",
+				"type": "String"
+			},
+			{
+				"name": "RINoicenum",
+				"type": "String"
+			},
+			{
+				"name": "RINoicedate",
+				"type": "String"
+			},
+			{
+				"name": "ItemCode",
+				"type": "String"
+			},
+			{
+				"name": "Dscription",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "Price Per Unit",
+				"type": "String"
+			}
+		]
+	}
+}
