@@ -1,0 +1,58 @@
+{
+	"name": "ds_customerTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreeSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "bp_code",
+				"type": "varchar"
+			},
+			{
+				"name": "bp_name",
+				"type": "varchar"
+			},
+			{
+				"name": "bp_type",
+				"type": "varchar"
+			},
+			{
+				"name": "active",
+				"type": "varchar"
+			},
+			{
+				"name": "bill_to_city",
+				"type": "varchar"
+			},
+			{
+				"name": "bill_to_state",
+				"type": "varchar"
+			},
+			{
+				"name": "bp_currency",
+				"type": "varchar"
+			},
+			{
+				"name": "bill_to_country",
+				"type": "varchar"
+			},
+			{
+				"name": "zone",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "customers"
+		}
+	}
+}
