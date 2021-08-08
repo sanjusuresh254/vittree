@@ -6,18 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-vittree2021"
-		},
-		"ls_vittreeSQL_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_vittreeSQL'"
-		},
-		"ls_vittreegen2_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_vittreegen2'"
-		},
-		"ls_vittreegen2_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://vittreesa.dfs.core.windows.net"
 		}
 	},
 	"variables": {
@@ -75,15 +63,13 @@
 						"inputs": [
 							{
 								"referenceName": "ds_products_excel",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_products_csv",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -132,15 +118,13 @@
 						"inputs": [
 							{
 								"referenceName": "ds_products_category",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_products_category_target",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -189,15 +173,13 @@
 						"inputs": [
 							{
 								"referenceName": "ds_products_subcategory_source",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_products_subcategory_target",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -246,15 +228,13 @@
 						"inputs": [
 							{
 								"referenceName": "ds_customers_source",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_customers_target",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -303,15 +283,13 @@
 						"inputs": [
 							{
 								"referenceName": "ds_transactionssales_source",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_transactionssales_target",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -360,15 +338,13 @@
 						"inputs": [
 							{
 								"referenceName": "ds_transactionsreturns_source",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_transactionsreturns_target",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -376,12 +352,6 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_products_excel')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_csv')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_category')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_category_target')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_subcategory_source')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_subcategory_target')]",
 				"[concat(variables('factoryId'), '/datasets/ds_customers_source')]",
 				"[concat(variables('factoryId'), '/datasets/ds_customers_target')]",
 				"[concat(variables('factoryId'), '/datasets/ds_transactionssales_source')]",
@@ -389,794 +359,6 @@
 				"[concat(variables('factoryId'), '/datasets/ds_transactionsreturns_source')]",
 				"[concat(variables('factoryId'), '/datasets/ds_transactionsreturns_target')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_product_category_table')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreeSQL",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ProductCategoryKey",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductCategoryLabel",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductCategoryName",
-						"type": "varchar"
-					},
-					{
-						"name": "ProductCategoryDescription",
-						"type": "varchar"
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "LoadDate",
-						"type": "date"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "date"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "product_category"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreeSQL')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_category')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "ProductCategory",
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Product Master.xlsx",
-						"fileSystem": "input"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "ProductCategoryKey",
-						"type": "String"
-					},
-					{
-						"name": "ProductCategoryLabel",
-						"type": "String"
-					},
-					{
-						"name": "ProductCategoryName",
-						"type": "String"
-					},
-					{
-						"name": "ProductCategoryDescription",
-						"type": "String"
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "String"
-					},
-					{
-						"name": "LoadDate",
-						"type": "String"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_category_target')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "products_category.csv",
-						"fileSystem": "output"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "ProductKey",
-						"type": "String"
-					},
-					{
-						"name": "ProductLabel",
-						"type": "String"
-					},
-					{
-						"name": "ProductName",
-						"type": "String"
-					},
-					{
-						"name": "ProductDescription",
-						"type": "String"
-					},
-					{
-						"name": "ProductSubcategoryKey",
-						"type": "String"
-					},
-					{
-						"name": "Manufacturer",
-						"type": "String"
-					},
-					{
-						"name": "BrandName",
-						"type": "String"
-					},
-					{
-						"name": "ClassID",
-						"type": "String"
-					},
-					{
-						"name": "ClassName",
-						"type": "String"
-					},
-					{
-						"name": "StyleID",
-						"type": "String"
-					},
-					{
-						"name": "StyleName",
-						"type": "String"
-					},
-					{
-						"name": "ColorID",
-						"type": "String"
-					},
-					{
-						"name": "ColorName",
-						"type": "String"
-					},
-					{
-						"name": "Size",
-						"type": "String"
-					},
-					{
-						"name": "SizeRange",
-						"type": "String"
-					},
-					{
-						"name": "SizeUnitMeasureID",
-						"type": "String"
-					},
-					{
-						"name": "Weight",
-						"type": "String"
-					},
-					{
-						"name": "WeightUnitMeasureID",
-						"type": "String"
-					},
-					{
-						"name": "UnitOfMeasureID",
-						"type": "String"
-					},
-					{
-						"name": "UnitOfMeasureName",
-						"type": "String"
-					},
-					{
-						"name": "StockTypeID",
-						"type": "String"
-					},
-					{
-						"name": "StockTypeName",
-						"type": "String"
-					},
-					{
-						"name": "UnitCost",
-						"type": "String"
-					},
-					{
-						"name": "UnitPrice",
-						"type": "String"
-					},
-					{
-						"name": "AvailableForSaleDate",
-						"type": "String"
-					},
-					{
-						"name": "StopSaleDate",
-						"type": "String"
-					},
-					{
-						"name": "Status",
-						"type": "String"
-					},
-					{
-						"name": "ImageURL",
-						"type": "String"
-					},
-					{
-						"name": "ProductURL",
-						"type": "String"
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "String"
-					},
-					{
-						"name": "LoadDate",
-						"type": "String"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "products.csv",
-						"fileSystem": "output"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_excel')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Product",
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Product Master.xlsx",
-						"fileSystem": "input"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "ProductKey",
-						"type": "String"
-					},
-					{
-						"name": "ProductLabel",
-						"type": "String"
-					},
-					{
-						"name": "ProductName",
-						"type": "String"
-					},
-					{
-						"name": "ProductDescription",
-						"type": "String"
-					},
-					{
-						"name": "ProductSubcategoryKey",
-						"type": "String"
-					},
-					{
-						"name": "Manufacturer",
-						"type": "String"
-					},
-					{
-						"name": "BrandName",
-						"type": "String"
-					},
-					{
-						"name": "ClassID",
-						"type": "String"
-					},
-					{
-						"name": "ClassName",
-						"type": "String"
-					},
-					{
-						"name": "StyleID",
-						"type": "String"
-					},
-					{
-						"name": "StyleName",
-						"type": "String"
-					},
-					{
-						"name": "ColorID",
-						"type": "String"
-					},
-					{
-						"name": "ColorName",
-						"type": "String"
-					},
-					{
-						"name": "Size",
-						"type": "String"
-					},
-					{
-						"name": "SizeRange",
-						"type": "String"
-					},
-					{
-						"name": "SizeUnitMeasureID",
-						"type": "String"
-					},
-					{
-						"name": "Weight",
-						"type": "String"
-					},
-					{
-						"name": "WeightUnitMeasureID",
-						"type": "String"
-					},
-					{
-						"name": "UnitOfMeasureID",
-						"type": "String"
-					},
-					{
-						"name": "UnitOfMeasureName",
-						"type": "String"
-					},
-					{
-						"name": "StockTypeID",
-						"type": "String"
-					},
-					{
-						"name": "StockTypeName",
-						"type": "String"
-					},
-					{
-						"name": "UnitCost",
-						"type": "String"
-					},
-					{
-						"name": "UnitPrice",
-						"type": "String"
-					},
-					{
-						"name": "AvailableForSaleDate",
-						"type": "String"
-					},
-					{
-						"name": "StopSaleDate",
-						"type": "String"
-					},
-					{
-						"name": "Status",
-						"type": "String"
-					},
-					{
-						"name": "ImageURL",
-						"type": "String"
-					},
-					{
-						"name": "ProductURL",
-						"type": "String"
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "String"
-					},
-					{
-						"name": "LoadDate",
-						"type": "String"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_subcategory_source')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Product SubCategory",
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Product Master.xlsx",
-						"fileSystem": "input"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "ProductSubcategoryKey",
-						"type": "String"
-					},
-					{
-						"name": "ProductSubcategoryLabel",
-						"type": "String"
-					},
-					{
-						"name": "ProductSubcategoryName",
-						"type": "String"
-					},
-					{
-						"name": "ProductSubcategoryDescription",
-						"type": "String"
-					},
-					{
-						"name": "ProductCategoryKey",
-						"type": "String"
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "String"
-					},
-					{
-						"name": "LoadDate",
-						"type": "String"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_subcategory_table')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreeSQL",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ProductSubcategoryKey",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductSubcategoryLabel",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductSubcategoryName",
-						"type": "varchar"
-					},
-					{
-						"name": "ProductSubcategoryDescription",
-						"type": "varchar"
-					},
-					{
-						"name": "ProductCategoryKey",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "LoadDate",
-						"type": "date"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "date"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "product_subcategory"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreeSQL')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_subcategory_target')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "products_subcategory.csv",
-						"fileSystem": "output"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_products_table')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_vittreeSQL",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ProductKey",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductLabel",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProductName",
-						"type": "varchar"
-					},
-					{
-						"name": "ProductDescription",
-						"type": "varchar"
-					},
-					{
-						"name": "ProductSubcategoryKey",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Manufacturer",
-						"type": "varchar"
-					},
-					{
-						"name": "BrandName",
-						"type": "varchar"
-					},
-					{
-						"name": "ClassID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ClassName",
-						"type": "varchar"
-					},
-					{
-						"name": "StyleID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StyleName",
-						"type": "varchar"
-					},
-					{
-						"name": "ColorID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ColorName",
-						"type": "varchar"
-					},
-					{
-						"name": "Size",
-						"type": "varchar"
-					},
-					{
-						"name": "SizeRange",
-						"type": "varchar"
-					},
-					{
-						"name": "SizeUnitMeasureID",
-						"type": "varchar"
-					},
-					{
-						"name": "Weight",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "WeightUnitMeasureID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UnitOfMeasureID",
-						"type": "varchar"
-					},
-					{
-						"name": "UnitOfMeasureName",
-						"type": "varchar"
-					},
-					{
-						"name": "StockTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StockTypeName",
-						"type": "varchar"
-					},
-					{
-						"name": "UnitCost",
-						"type": "decimal",
-						"precision": 23,
-						"scale": 2
-					},
-					{
-						"name": "UnitPrice",
-						"type": "decimal",
-						"precision": 23,
-						"scale": 2
-					},
-					{
-						"name": "AvailableForSaleDate",
-						"type": "date"
-					},
-					{
-						"name": "StopSaleDate",
-						"type": "date"
-					},
-					{
-						"name": "Status",
-						"type": "varchar"
-					},
-					{
-						"name": "ImageURL",
-						"type": "varchar"
-					},
-					{
-						"name": "ProductURL",
-						"type": "varchar"
-					},
-					{
-						"name": "ETLLoadID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "LoadDate",
-						"type": "date"
-					},
-					{
-						"name": "UpdateDate",
-						"type": "date"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "products"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreeSQL')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_vittreeSQL')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('ls_vittreeSQL_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_vittreegen2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('ls_vittreegen2_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('ls_vittreegen2_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/df_copy_csvtoSQL')]",
@@ -1278,15 +460,9 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_products_csv')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_subcategory_target')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_category_target')]",
 				"[concat(variables('factoryId'), '/datasets/ds_customers_target')]",
 				"[concat(variables('factoryId'), '/datasets/ds_transactionssales_target')]",
 				"[concat(variables('factoryId'), '/datasets/ds_transactionsreturns_target')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_table')]",
-				"[concat(variables('factoryId'), '/datasets/ds_product_category_table')]",
-				"[concat(variables('factoryId'), '/datasets/ds_products_subcategory_table')]",
 				"[concat(variables('factoryId'), '/datasets/ds_customerTable')]",
 				"[concat(variables('factoryId'), '/datasets/ds_transactionsales_table')]",
 				"[concat(variables('factoryId'), '/datasets/ds_transactionreturns_table')]"
@@ -1355,9 +531,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_customers_target')]",
@@ -1383,9 +557,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transactionssales_source')]",
@@ -1442,9 +614,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transactionssales_target')]",
@@ -1470,9 +640,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transactionsreturns_source')]",
@@ -1529,9 +697,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transactionsreturns_target')]",
@@ -1557,9 +723,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreegen2')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_customerTable')]",
@@ -1620,9 +784,7 @@
 					"table": "customers"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreeSQL')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transactionsales_table')]",
@@ -1679,9 +841,7 @@
 					"table": "transactions"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreeSQL')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transactionreturns_table')]",
@@ -1738,9 +898,7 @@
 					"table": "transactions_returns"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_vittreeSQL')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
@@ -1763,24 +921,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "df_copy_csvtoSQL",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"SourceProducts": {},
-									"SourceProductsSubcategory": {},
-									"sourceProductsCategory": {},
-									"SourceCustomers": {},
-									"sourceTransactionSales": {},
-									"sourceTransactionReturn": {},
-									"SinkProducts": {},
-									"SinkProductsCategory": {},
-									"SinkProductsSubcategory": {},
-									"sinkCustomers": {},
-									"sinkTransactionSales": {},
-									"sinkTransactionsReturns": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
