@@ -1,0 +1,62 @@
+{
+	"name": "ds_customers_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_vittreegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Customer Master.xlsx",
+				"fileSystem": "input"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "#",
+				"type": "String"
+			},
+			{
+				"name": "BP Code",
+				"type": "String"
+			},
+			{
+				"name": "BP Name",
+				"type": "String"
+			},
+			{
+				"name": "BP Type",
+				"type": "String"
+			},
+			{
+				"name": "Active",
+				"type": "String"
+			},
+			{
+				"name": "Bill-to City",
+				"type": "String"
+			},
+			{
+				"name": "Bill-to State",
+				"type": "String"
+			},
+			{
+				"name": "BP Currency",
+				"type": "String"
+			},
+			{
+				"name": "Bill-to Country",
+				"type": "String"
+			},
+			{
+				"name": "Zone",
+				"type": "String"
+			}
+		]
+	}
+}
